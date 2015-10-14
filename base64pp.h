@@ -139,6 +139,10 @@ private:
 };
 
 inline std::string Base64::encode(std::string const& data) NOEXCEPT {
+    if (data.empty()) {
+        return std::string();
+    }
+
     size_t bits = data.size() * 8;
     uint8_t rchars = (bits % 24) / 8;
     size_t storage = (bits / 24) * 4 + (rchars == 0 ? 0 : 4);
@@ -163,6 +167,10 @@ inline std::string Base64::encode(std::string const& data) NOEXCEPT {
 }
 
 inline std::string Base64::decode(std::string const& data) {
+    if (data.empty()) {
+        return std::string();
+    }
+
     auto rit = data.rbegin();
     int eq = 0;
     while (*rit++ == '=') {
