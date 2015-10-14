@@ -1,4 +1,4 @@
-# Base64 encoding/decoding implementation
+# Base64 encoding/decoding
 
 A header-only implementation of [RFC
 4648](https://tools.ietf.org/html/rfc4648). This is among the least essential
