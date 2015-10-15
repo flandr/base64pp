@@ -51,9 +51,9 @@ public:
         } else if (c >= '0' && c <= '9') {
             return c - '0' + 52;
         } else if (c == '+') {
-            return 63;
+            return 62;
         } else if (c == '/') {
-            return 64;
+            return 63;
         } else {
             throw std::runtime_error("Invalid encoding");
         }
@@ -86,7 +86,9 @@ public:
     }
 
     std::string to_string() const {
-        return std::string(data_.begin(), data_.end());
+        // Only returning fully written bytes
+        return avail_ == 0 ? std::string(data_.begin(), data_.end()) :
+            std::string(data_.begin(), data_.end() - 1);
     }
 private:
     int avail_ = 0;
